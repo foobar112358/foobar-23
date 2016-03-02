@@ -22,11 +22,13 @@ def answer(heights):
 
     return total_water
 
+
 def get_water_in(heights, s, e):
     if s > e:
         s, e = e, s
     h = min(heights[s], heights[e])
     return h * (e - s - 1) - sum(heights[s + 1:e]) if (e - s > 1) else 0
+
 
 def find_peak_in(heights, s, e):
     m = 0

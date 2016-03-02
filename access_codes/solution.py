@@ -6,7 +6,7 @@ def answer(x):
         j = ''.join(j)
         s.add(min(i, j))
 
-    print s
+    # print s
     return len(s)
 
 if __name__=='__main__':

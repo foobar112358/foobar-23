@@ -1,22 +1,3 @@
-def answer2(chunk, word):
-    while 1:
-        # pos = chunk.rfind(word)
-        h, _, t = chunk.rpartition(word)
-        if not h:
-            break
-        chunk = h + t
-
-    if chunk.startswith(word):
-        chunk = chunk.replace(word, '')
-
-    # while 1:
-    #     segs = chunk.rsplit(word)
-    #     if len(segs) < 2:
-    #         break
-    #     chunk = ''.join(segs)
-
-    return chunk
-
 def answer(chunk, word):
     res = chunk
     q = [(chunk, len(chunk))]
@@ -33,34 +14,6 @@ def answer(chunk, word):
                 st.add(c)
         elif len(c) < len(res):
             res = c
-
-    return res
-
-def answer2(chunk, word):
-    res = chunk
-    # q = [(chunk, 0)]
-    q = {chunk: 0}
-    while 1:
-        hasNew = True
-        for c, s in q.iteritems():
-            if s >= 0:
-                p = c.find(word, s)
-                if p >= 0:
-                    q[c] = p + 1
-                    c = c[:s] + c[s:].replace(word, )
-        c, s = q.pop(0)
-        # print c, s
-        p = c.find(word, s)
-        if p >= 0:
-            q.append((c, p + 1))
-            c = c[:s] + c[s:].replace(word, '', 1)
-            # print '-- append ', (c, 0)
-            q.append((c, 0))
-        elif len(c) <= len(res):
-            # print '-- result ', c
-            res = c
-        # else:
-            # print '-- skip'
 
     return res
 

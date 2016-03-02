@@ -11,77 +11,49 @@ def answer2(food, grid):
     c = 0
     while 1:
         c += 1
-        #print "===", path
         while path:
             x, y, f, d = path.pop()
             if d < RIGHT:
                 break
-        #print x, y, f, d, '->',
         d += 1
         if d == RIGHT:
-            #print 'RIGHT',
             if x >= NM:
-                #print 'WALL'
                 continue
-            #try go right
-            #print "CHK", [x+1, y, grid[x+1][y]],
             f -= grid[x + 1][y]
             _left_required = _left_at_least(len(path) + 2)
-            #print 'REQUIRE', _left_required, 'LEFT', f
             if not _left_required: # last step
-                #print 'RES',
                 if not f:
                     return 0
                 if f < result:
                     result = f
-                    #print 'UPD', result, '=>', f
-                #else:
-                    #print ''
-                # if not result: # best
-                #     return 0
             elif f < _left_required:
-                #print 'EATEN'
                 continue
             else:
                 path.append((x, y, f + grid[x+1][y], d))
                 path.append((x + 1, y, f, INIT))
-                #print 'NEXT', [x+1, y]
                 continue
 
         elif d == DOWN:
-            #print 'DOWN',
-            # try go down
             if y >= NM:
                 path.append((x, y, f, d))
-                #print 'WALL, REDIR'
                 continue
-            #print "CHK", [x, y+1, grid[x][y+1]],
             f -= grid[x][y+1]
             _left_required = _left_at_least(len(path) + 2)
-            #print 'REQUIRE', _left_required, 'LEFT', f
             if not _left_required:
-                # #print 'RES',
                 if not f:
                     return 0
                 if f < result:
-                    # #print 'UPD', result, '=>', f
                     result = f
-                #else:
-                    #print ''
             elif f < _left_required:
-                # #print 'EATEN', 'REDIR', 'NEXT', [x, y, f + grid[x][y+1], d]
                 path.append((x, y, f + grid[x][y+1], d))
                 continue
             else:
-                # #print 'NEXT', [x, y + 1]
                 path.append((x, y, f + grid[x][y+1], d))
                 path.append((x, y + 1, f, INIT))
                 continue
         else: # finish
-            #print '### FIN ###'
             break
 
-    print c
     return result
 
 def answer(food, grid):
