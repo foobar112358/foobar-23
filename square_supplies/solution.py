@@ -49,5 +49,5 @@ if __name__=='__main__':
 
     import test
     test.test(answer, cases)
-    validate()
+    # validate()
     # print test.bench(answer, cases)
